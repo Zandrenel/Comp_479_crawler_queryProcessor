@@ -209,7 +209,6 @@ def BM25RankPostings(query, postings,indexName):
     LdAll = 0
     rankedIndex = {}
     docIDs = []
-
     """
     for each posting:
         for each term in that postings

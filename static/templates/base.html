@@ -16,15 +16,17 @@
   {% endblock %}
   {% block head %}
   <script>
+    
     function sendSearch(){
+	
 	console.log("starting function");
 	var xhttp = new XMLHttpRequest();
 	var query = document.getElementById("query").value;
 	console.log("This is the query:"+query);
 	
 	document.getElementById("queryResults").innerHTML = "";
+	
 	xhttp.onreadystatechange = function() {
-	    
 	    if (this.readyState == 4 && this.status == 200) {
 		urls = JSON.parse(this.response);
 		for(i=0;i<Object.keys(urls).length;i++){
@@ -33,10 +35,12 @@
 		    document.getElementById("queryResults").innerHTML += text;
 		 	  
 		}
-			   event.preventDefault();
+		event.preventDefault();
 	    };
 	}
-	    xhttp.open("GET", "queryProcessing/"+query, false);
+	
+	
+	xhttp.open("GET", "queryProcessing/"+query, false);
 	xhttp.send();
 
     }
@@ -56,7 +60,7 @@
   {% block body %}
   <div class="d-flex justify-content-center">
     <div id="queryform" class="d-flex justify-content-center">
-    <form method="post">
+    <form id="myform" method="post">
       <div>
 	<input id="query" type="text" placeholder="Type your search query here." name="search">
       </div>
