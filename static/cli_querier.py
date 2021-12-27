@@ -3,9 +3,10 @@ import os, json, re, sys
 from nltk.corpus import stopwords
 stop_words = stopwords.words('english')
 
+
 query = sys.argv[1]
 
-print("Query:",query)
+
 query = re.sub(r'[^\w\s]','',query)
 query = re.sub('/[,/\!@#$%^&*()=-_+]+/g','',query)
 
@@ -16,7 +17,7 @@ for q_ in range(len(query)):
         queryLst.append(query[q_].lower())
         results = q.queryProcessorRankedOR(queryLst,"Blocks/Index.txt")
         ret = {}
-        print(type(results),len(results))
+        
         
 with open('urls.json','r') as urls:
     file = urls.read()
@@ -26,4 +27,4 @@ with open('urls.json','r') as urls:
         if j == 15:
             break
         print(cont[str(i)])
-
+        j += 1
