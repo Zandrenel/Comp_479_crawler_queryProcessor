@@ -21,12 +21,11 @@ def loadIndexToMemory(indexFile):
 #query input is a list of words, index is the path to the index file
 def queryProcessorMem(query, index):
     #will then return the query that exists in the indicated index file
-    memDex= loadIndexToMemory(index)
+    memDex = loadIndexToMemory(index)
     postingsLists = []
     for term in query:
         if term in memDex.keys():
             postingsLists.append(memDex[term])
-        
     return postingsLists
 
 #sorts a set of lists by indicated idices in ascending order
@@ -155,11 +154,12 @@ def queryProcessorOR(queryTerms, indexFile):
     #will collect and initiallize the posting lists
     queryPostings = queryProcessorMem(queryTerms, indexFile)
     
+
     
     for i in range(len(queryPostings)):
         postings.append(pairSortBubble(queryPostings[i],0))
         places.append(0)
-    
+
     #start value to compare
     min = postings[0][places[0]][0]
     
@@ -193,7 +193,7 @@ def queryProcessorOR(queryTerms, indexFile):
 
 #will rank the Index at designated location and create a json file with
 #the ranking of each document
-def BM25RankPostings(query, postings,indexName):
+def BM25RankPostings(query, postings,indexName,path):
     #sum for each term in the query of
     #log(N/df)*((k1+1)*tf)/(k1*((1-b)+b*Ld/Lave)+tf)
     #N = Number of docs
@@ -215,7 +215,7 @@ def BM25RankPostings(query, postings,indexName):
             give a score, then add it to a total score for that doc
 
     """
-    with open("BM25Info.json",'r') as docInfo:
+    with open("{}/BM25Info.json".format(path),'r') as docInfo:
         allDocs = json.loads(docInfo.read())
         N = len(allDocs)
         for doc in allDocs:
@@ -263,13 +263,13 @@ def returnRankedOrderedPostings(postings):
         final.append(post[0])
     return final
 
-def queryProcessorRankedOR(queryTerms, IndexFile):
+def queryProcessorRankedOR(queryTerms, IndexFile, path):
 
     
     postings = queryProcessorOR(queryTerms,IndexFile)
 
     
-    ret1=BM25RankPostings(queryTerms, postings,IndexFile)
+    ret1= BM25RankPostings(queryTerms, postings,IndexFile,path)
     ret2 = []
     for i in ret1:
         ret2.append(i[0])
