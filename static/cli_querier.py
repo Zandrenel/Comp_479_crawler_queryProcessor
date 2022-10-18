@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 stop_words = stopwords.words('english')
 
 
+
 path = sys.argv[1]
 
 query = sys.argv[2]
@@ -17,6 +18,10 @@ queryLst = []
 blocks = "{}/Blocks/Index.txt".format(path)
 for q_ in range(len(query)):
     if query[q_].lower() not in stop_words:
+        queryLst.append(query[q_].lower())
+        results = q.queryProcessorRankedOR(queryLst,"Blocks/Index.txt")
+        ret = {}
+
         
         queryLst.append(query[q_].lower())
 

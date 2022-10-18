@@ -1,0 +1,19 @@
+* COMP 479 Crawler and Search Engine
+Author: Alexander De Laurentiis
+
+** Description
+The goal of this assignment was to create a fully functional web crawler that could crawl a scalable and desirably large quantity of data without being limited by memory space. Then have this information pipe into an algorithm that would turn the data stream into an inverted index which could then be used by the front end of the project. The front end would be a search engine which uses the BM25 search algorithm to rank and score the matching results and order them upon retrieval to respond to the user's search query.
+
+** Bullet Facts
+- Crawler and Query processor engine built in Python
+- Index is of first 10,000 pages from https://concordia.ca
+- Returns first 15 most relevant results after scoring
+- Uses the BM25 ranking algorithm
+- Crawler uses SPIMI to construct the inverted index
+- Records frequency of word per doc along with doc ID in the index
+- Crawler built from scratch using requests and urlparse libraries
+
+** Demo
+[[https://alexanderdelaurentiis.com]]
+[[./Images/pic1.png]]
+[[./Images/pic2.png]]
