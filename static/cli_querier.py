@@ -10,7 +10,7 @@ path = sys.argv[1]
 query = sys.argv[2]
 
 query = re.sub(r'[^\w\s]','',query)
-query = re.sub('/[,/\!@#$%^&*()=-_+]+/g','',query)
+query = re.sub('/[,/@#$%^&*()=-_+]+/g','',query)
 
 query = query.split()
 queryLst = []
@@ -19,9 +19,9 @@ blocks = "{}/Blocks/Index.txt".format(path)
 for q_ in range(len(query)):
     if query[q_].lower() not in stop_words:
         queryLst.append(query[q_].lower())
-        results = q.queryProcessorRankedOR(queryLst,"Blocks/Index.txt")
-        ret = {}
-
+        
+        #results = q.queryProcessorRankedOR(queryLst,"Blocks/Index.txt")
+        #ret = {}
         
         queryLst.append(query[q_].lower())
 

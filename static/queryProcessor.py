@@ -161,7 +161,9 @@ def queryProcessorOR(queryTerms, indexFile):
         places.append(0)
 
     #start value to compare
-    min = postings[0][places[0]][0]
+    min = 0
+    if len(postings) > 0:
+        min = postings[0][places[0]][0]
     
     
     #while not all postings are empty will add the min value among
