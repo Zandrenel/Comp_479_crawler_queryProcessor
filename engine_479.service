@@ -1,0 +1,19 @@
+[Unit]
+Description=Python Search Engine Server
+
+[Service]
+UMask=022
+Environment=LANG=en_US.utf8
+Restart=on-failure
+ExecReload=/bin/kill -s HUP $MAINPID
+StartLimitInterval=60
+LimitNOFILE=1000
+StartLimitBurst=5
+WorkingDirectory=/var/www/personal_site/src/showcases/engineP
+ExecStart=source ./bin/activate && \
+		 uwsgi --http 127.0.0.1:8000 --master -p 4 -w server:app
+
+[Install]
+WantedBy=multi-user.target
+
+

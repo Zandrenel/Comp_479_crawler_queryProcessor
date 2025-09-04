@@ -265,7 +265,7 @@ def returnRankedOrderedPostings(postings):
         final.append(post[0])
     return final
 
-def queryProcessorRankedOR(queryTerms, IndexFile, path):
+def queryProcessorRankedOR(queryTerms, IndexFile, path = '.'):
 
     
     postings = queryProcessorOR(queryTerms,IndexFile)
