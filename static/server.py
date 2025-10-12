@@ -41,6 +41,10 @@ def retrieve(query):
     
     return ret
 
+@app.route("/status", methods=["GET"])
+def status():
+    return {'message': 'OK', 'code': 200}, 200
+
 @app.route("/query/<string:query>", methods=["GET"])
 def query(query):
     print("Query:",query)
@@ -61,7 +65,7 @@ def query(query):
         for i in results:
             ret['message'].append(cont[str(i)])
             j += 1    
-    return ret
+    return ret, 200
 
 if __name__=='__main__':
     app.run(debug=False)

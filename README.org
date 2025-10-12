@@ -4,7 +4,11 @@ Author: Alexander De Laurentiis
 ** Running the server
 source ./bin/activate
 uwsgi --http 127.0.0.1:8000 --master -p 4 -w server:app
-
+** Docker running
+sudo docker build -t engine_image .
+sudo docker run --network host -p 8000:8000 engine_image
+or
+sudo docker -d run --network host -p 8000:8000 engine_image
 
 ** Descriptionq
 The goal of this assignment was to create a fully functional web crawler that could crawl a scalable and desirably large quantity of data without being limited by memory space. Then have this information pipe into an algorithm that would turn the data stream into an inverted index which could then be used by the front end of the project. The front end would be a search engine which uses the BM25 search algorithm to rank and score the matching results and order them upon retrieval to respond to the user's search query.
